@@ -1,11 +1,4 @@
-let x
-let y
-let dx
-let dy
-let radius
-let r
-let g
-let b
+let ball = {}
 let bg
 
 function setup() {
@@ -18,47 +11,44 @@ function setup() {
 
 function draw() {
   background(bg)
-  fill(color(r,g,b))
-  circle(x,y,radius)
-  x += dx // x = x + dx
-  y += dy // y = y + dy
-  if( x < 0 ) {
-    dx *= -1
+  fill(ball.c)
+  circle(ball.x,ball.y,ball.r)
+  ball.x += ball.dx // x = x + dx
+  ball.y += ball.dy // y = y + dy
+  if( ball.x - ball.r < 0 ) {
+    ball.dx *= -1
   }
-  if( x > width ) {
-    dx *= -1 
+  if( ball.x + ball.r > width ) {
+    ball.dx *= -1 
   }
-  if( y < 0 ) {
-    dy *= -1
+  if( ball.y - ball.r < 0 ) {
+    ball.dy *= -1
   }
-  if( y > height ) {
-    dy *= -1
+  if( ball.y + ball.r > height ) {
+    ball.dy *= -1
   }     
 }
 
 function initializeBall() {
   setRandomPosition()
   setRandomVelocity()
-  radius = random(10,20)
+  ball.r = random(10,20)
   createRandomColor(true)  
 }
 
 function setRandomPosition( xMin = 0, yMin = 0, xMax = width, yMax = height) {
-  x = random(xMin, xMax)
-  y = random(yMin, yMax)  
+  ball.x = random(xMin, xMax)
+  ball.y = random(yMin, yMax)  
 }
 
 function setRandomVelocity() {
-  dx = random(-1,1)
-  dy = random(-1,1)  
+  ball.dx = random(-1,1)
+  ball.dy = random(-1,1)  
 }
 
 function createRandomColor(avenues=false) {
   if( avenues ) {
-    const c = color(randomAvenuesColor())
-    r = red(c)
-    g = green(c)
-    b = blue(c)
+    ball.c = randomAvenuesColor()
   } else {
     r = random(255)
     g = random(255)
