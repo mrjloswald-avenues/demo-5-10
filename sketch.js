@@ -10,23 +10,27 @@ function setup() {
 }
 
 function draw() {
-  background(bg)
-  fill(ball.c)
-  circle(ball.x,ball.y,ball.r)
-  ball.x += ball.dx // x = x + dx
-  ball.y += ball.dy // y = y + dy
-  if( ball.x - ball.r < 0 ) {
-    ball.dx *= -1
+  background(bg)   
+  updateBall(ball)
+}
+
+function updateBall(b) {
+  fill(b.c)
+  circle(b.x,b.y,b.r)
+  b.x += b.dx // x = x + dx
+  b.y += b.dy // y = y + dy
+  if( b.x - b.r < 0 ) {
+    b.dx *= -1
   }
-  if( ball.x + ball.r > width ) {
-    ball.dx *= -1 
+  if( b.x + b.r > width ) {
+    b.dx *= -1 
   }
-  if( ball.y - ball.r < 0 ) {
-    ball.dy *= -1
+  if( b.y - b.r < 0 ) {
+    b.dy *= -1
   }
-  if( ball.y + ball.r > height ) {
-    ball.dy *= -1
-  }     
+  if( b.y + b.r > height ) {
+    b.dy *= -1
+  }    
 }
 
 function initializeBall() {
