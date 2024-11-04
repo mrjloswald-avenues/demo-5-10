@@ -1,4 +1,6 @@
 let ball = {}
+let ball2 = {}
+let ball3 = {} 
 let bg
 
 function setup() {
@@ -6,12 +8,16 @@ function setup() {
   ellipseMode(RADIUS)
   createRandomBGColor(true)
   ball = initializeBall()
+  ball2 = initializeBall() 
+  ball3 = initializeBall()
   noStroke() 
 }
 
 function draw() {
   background(bg)   
   updateBall(ball)
+  updateBall(ball2)
+  updateBall(ball3)
 }
 
 function updateBall(b) {
