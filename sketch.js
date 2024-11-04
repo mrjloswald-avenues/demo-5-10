@@ -5,7 +5,7 @@ function setup() {
   createCanvas(400, 400)
   ellipseMode(RADIUS)
   createRandomBGColor(true)
-  initializeBall()
+  ball = initializeBall()
   noStroke() 
 }
 
@@ -34,29 +34,29 @@ function updateBall(b) {
 }
 
 function initializeBall() {
-  setRandomPosition()
-  setRandomVelocity()
-  ball.r = random(10,20)
-  createRandomColor(true)  
+  let newBall = {} 
+  setRandomPosition(newBall)
+  setRandomVelocity(newBall)
+  newBall.r = random(10,20)
+  newBall.c = createRandomColor(true)  
+  return newBall
 }
 
-function setRandomPosition( xMin = 0, yMin = 0, xMax = width, yMax = height) {
-  ball.x = random(xMin, xMax)
-  ball.y = random(yMin, yMax)  
+function setRandomPosition( b, xMin = 0, yMin = 0, xMax = width, yMax = height) {
+  b.x = random(xMin, xMax)
+  b.y = random(yMin, yMax)  
 }
 
-function setRandomVelocity() {
-  ball.dx = random(-1,1)
-  ball.dy = random(-1,1)  
+function setRandomVelocity(b) {
+  b.dx = random(-1,1)
+  b.dy = random(-1,1)  
 }
 
 function createRandomColor(avenues=false) {
   if( avenues ) {
-    ball.c = randomAvenuesColor()
+    return randomAvenuesColor()
   } else {
-    r = random(255)
-    g = random(255)
-    b = random(255)    
+    return color(random(255),random(255),random(255))
   }
 
 }
